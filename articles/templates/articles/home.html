@@ -1,0 +1,45 @@
+{% extends 'authers/base.html' %}
+{% block content %}
+<form method="GET">
+    <input type="text" name="query" placeholder="Search" value="{{ request.GET.query }}" style="width: 89.2%;">
+    <button class="btn btn-info" type="submit">Search</button>
+</form><br>
+<h4>Your Private Articles</h4>
+{% if aut_art %}
+{% for article in aut_art %}
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">{{ article.auther }}</a>
+      <small class="text-muted">{{ article.date_posted }}</small>
+    </div>
+    <h2><a class="article-title" href="{% url 'view' article.id %}">{{ article.title }}</a></h2>
+    <p class="article-content">{{ article.description }}</p>
+    <img src="{{article.image.url}}" style="width: 500px;" alt="">
+  </div>
+</article>
+{% endfor %}
+<hr>
+{% else %}
+<p>No Private Articles to show</p>
+<hr>
+{% endif %}
+<h4>Public Articles</h4>
+{% if oth_art %}
+{% for article in oth_art %}
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">{{ article.auther }}</a>
+      <small class="text-muted">{{ article.date_posted }}</small>
+    </div>
+    <h2><a class="article-title" href="{% url 'view' article.id %}">{{ article.title }}</a></h2>
+    <p class="article-content">{{ article.description }}</p>
+    <img src="{{article.image.url}}" style="width: 500px;" alt="">
+  </div>
+</article>
+{% endfor %}
+{% else %}
+<p>No Articles Found</p>
+{% endif %}
+{% endblock content %}

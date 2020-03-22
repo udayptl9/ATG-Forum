@@ -1,0 +1,7 @@
+{% extends 'authers/base.html' %}
+{% block content %}
+<article class="media content-section">
+    <h2>You have been logged out!</h2>
+</article>
+<p>Want to login <a href="{% url 'login' %}">Login again!</a></p>
+{% endblock content %}

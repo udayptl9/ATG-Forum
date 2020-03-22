@@ -1,0 +1,16 @@
+{% extends 'authers/base.html' %}
+{% block content %}
+<h4>Login</h4>
+<article class="media content-section">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-info" type="submit">Login</button>
+    </form>
+</article>
+<br>
+<small>
+    <p>Need an account? <a href="{% url 'register' %}">Register</a>
+</small>
+
+{% endblock content %}
